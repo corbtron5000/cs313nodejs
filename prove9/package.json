@@ -9,6 +9,7 @@
   "author": "Corbin Lenning",
   "license": "ISC",
   "dependencies": {
+    "ejs": "^2.6.2",
     "express": "^4.17.1"
   }
 }
