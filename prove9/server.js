@@ -4,7 +4,7 @@ var app = express();
 
 const port = process.env.PORT || 5000;
 
-app.use(express.static("public"));
+app.use(express.static(__dirname + "/public"));
 
 app.set("views", "views");
 app.set("view engine", "ejs");
