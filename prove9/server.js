@@ -2,6 +2,8 @@ var express = require("express");
 
 var app = express();
 
+const port = process.env.PORT || 5000;
+
 app.use(express.static("public"));
 
 app.set("views", "views");
@@ -22,8 +24,8 @@ app.get("/result", function (req, res) {
 	res.render("result", param);
 });
 
-app.listen(5000, function() {
-	console.log("The server is listening on port 5000");
+app.listen(port, function() {
+	console.log("The server is listening on port" + port);
 });
 
 function calculateMailTotalPrice(type, mailWeight) {
