@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Trips</title>
+	<link rel="stylesheet" type="text/css" href="trips.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+</head>
+<body>
+	<header>
+		<div>
+			<h1 id="title">Camp Planner</h1>
+				<ul>
+					<li><a href="trips.html" class="link">Trips</a></li>
+					<li><a href="addTrips.html" class="link">Create Camping Trip</a></li>
+					<form id="searchForm">
+						<input type="text" name="location" id="location" placeholder="Enter camp's Location">
+						<input type="submit" id="search" name="search">
+					</form>
+				</ul>
+			</nav>
+		<div>
+	</header>
+	<br><br><br><br><br><br><br>
+	<h1 id="plan">Your Planned Trips</h1>
+
+	<div id="parent">
+		<div id="addTrip">
+			<p>Create New Camping Trip</p>
+		</div>
+	</div>
+
+	<script>
+			$('#search').click(function (e) {
+				e.preventDefault();
+				//alert("Is this being called")
+				submitHandler();
+			})
+
+			function submitHandler() {
+
+				//alert("The location value: " + $('#location').val());
+				var $uri = '/campingTrips?location=' + $('#location').val();
+				//alert("the uri: " + $uri);
+				$.ajax({
+					type: 'GET',
+					url: $uri,
+					dataType: "json",
+				}).done (function(data) {
+
+					//alert(data[0]['location']);
+					var id = "<div id='trip'" + data[0]['id'] + ">";
+					var location = "<p>" + data[0]['location'] + "</p>";
+					var startDate = "<p>" + data[0]['startdate'] + "<p>";
+					var endDate = "<p>" + data[0]['enddate'] + "<p></div>";
+					$("#addTrip").append(id + location + startDate + endDate);
+
+				}).fail (function () {
+					alert("Sorry not working");
+				})
+			}
+		</script>
+</body>
+</html>
