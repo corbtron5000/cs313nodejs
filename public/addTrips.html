@@ -59,7 +59,7 @@
 	<script>
 			$('#create').click(function (e) {
 				e.preventDefault();
-				alert("Is this being called")
+				//alert("Is this being called")
 				submitHandler();
 
 				$('#location').val("");
@@ -87,7 +87,7 @@
 				var $uri = "/addTrips?packing=";
 
 				$uri += packing + "&location=" + loc + "&prepare=" + prepare + "&itinerary=" + itinerary + "&goal=" + goal + "&start=" + start + "&end=" + end + "&camper=" + campers;
-				alert("the uri: " + $uri);
+				//alert("the uri: " + $uri);
 				$.ajax({
 					type: 'GET',
 					url: $uri,
