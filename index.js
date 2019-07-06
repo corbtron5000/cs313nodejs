@@ -58,7 +58,8 @@ app.listen(PORT, function() {
 const trips = require(__dirname + '/trips');
 trips.trip(app, pool);
 
-
+const newTrips = require(__dirname + '/addTrips');
+newTrips.addTrips(app, pool);
 
 
 

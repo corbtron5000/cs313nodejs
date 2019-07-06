@@ -3,7 +3,7 @@
 <head>
 	<title>Trips</title>
 	<link rel="stylesheet" type="text/css" href="addTrips.css">
-	<script language="javascript" type="text/javascript" src="jquery-1.8.3.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
 <body>
 	<header>
@@ -16,5 +16,90 @@
 			</nav>
 		<div>
 	</header>
+	<br><br><br><br><br><br><br>
+	
+	<div id="form">
+		<form>
+			<h1 id="formTitle">New Camping Trip</h1>
+			<div id="formData">
+				<div id="divLoc">
+					<div class="loc">
+						<span>Camp's Location * </span><br>
+						<input type="text" name="location" id="location" placeholder="Enter a location" size="40" maxlength="40"><br><br>
+					</div>
+					<div class="loc">
+						<span>City </span><br>
+						<input type="text" name="City" id="city" placeholder="City for weather" size="40"><br><br>
+					</div>
+				</div>
+				<div id="dates">
+					<div class="date">
+						<span>Start Date *</span><br>
+						<input type="text" name="start" id="start" placeholder="1999-04-28"><br><br>
+					</div>
+					<div class="date">
+						<span>End Date *</span><br>
+						<input type="text" name="end" id="end" placeholder="1999-04-30"><br><br>
+					</div><br>
+				<span>Prepare List * </span><br>
+				<textarea name="prepare" id="prepare" placeholder="Enter things that you need to do to get camp site or activities" cols="120" rows="8"></textarea><br><br>
+				<span>Packing List *</span><br>
+				<textarea name="packing" id="packing" placeholder="Enter packing list" cols="120" rows="8"></textarea><br><br>
+				<span>Itinerary *</span><br>
+				<textarea name="itinerary" id="itinerary" placeholder="Enter itineryary" cols="120" rows="8"></textarea><br><br>
+				<span>Goals *</span><br>
+				<textarea name="goals" id="goals" placeholder="Enter goals for the camping trip" cols="120" rows="8"></textarea><br><br>
+				<span>Campers *</span><br>
+				<textarea name="campers"id="campers" placeholder="Enter all the cmapers" cols="120" rows="8"></textarea><br><br>
+				<input type="submit" name="create" id="create" value="Create Trip">
+			</div>
+		</form>
+	</div>
+
+	<script>
+			$('#create').click(function (e) {
+				e.preventDefault();
+				alert("Is this being called")
+				submitHandler();
+
+				$('#location').val("");
+				$('#start').val("");
+				$('#end').val("");
+				$('#prepare').val("");
+				$('#packing').val("")
+				$("#itinerary").val("");
+				$('#goals').val("");
+				$('#campers').val("");
+
+			})
+
+			function submitHandler() {
+
+				var loc = $('#location').val();
+				var start = $('#start').val();
+				var end = $('#end').val();
+				var prepare = $('#prepare').val();
+				var packing = $('#packing').val()
+				var itinerary = $("#itinerary").val();
+				var goal = $('#goals').val();
+				var campers = $('#campers').val();
+				
+				var $uri = "/addTrips?packing=";
+
+				$uri += packing + "&location=" + loc + "&prepare=" + prepare + "&itinerary=" + itinerary + "&goal=" + goal + "&start=" + start + "&end=" + end + "&camper=" + campers;
+				alert("the uri: " + $uri);
+				$.ajax({
+					type: 'GET',
+					url: $uri,
+					dataType: "json",
+				}).done (function(data) {
+
+					alert("Your data has been added");
+					
+				}).fail (function () {
+					alert("Sorry not working");
+				})
+			}
+		</script>
 </body>
 </html>
