@@ -17,6 +17,7 @@ header {
     left: 0;
     width: 100%;
     position: fixed;
+    z-index: 2;
 }
 
 li a.link {
@@ -41,40 +42,36 @@ body {
 	background-color: #f6f6f6;
 }
 
-#searchForm {
-	float: right;
-	padding-right: 16px;
+#formTitle {
+	padding-top: 15px;
+	text-align: left;
 }
 
-#plan {
-	text-align: center;
-}
-
-#trip, #addTrip {
+#form {
+	margin-left: 10%;
+	margin-right: 10%;
 	background-color: white;
-  	float: left;
-  	width: 400px;
-  	height: 250px;
-  	margin-left: 25px;
-  	margin-bottom: 25px;
-  	padding: 10px;
+	padding-bottom: 20px;
+	padding-left: 15px;
 }
 
-h2 {
-	text-align: center;
+#formData {
+	padding-left: 100px;
 }
 
-a.trips {
-  text-decoration: none;
-  color: black;
+#create {
+	background-color: #C2DFFF;
+	font-weight: bold;
 }
 
-#addTrip:hover {
-  background-color: #F0F0F0;
-
+.loc, .date {
+	display: inline-block;
 }
 
-#trip:hover {
-  background-color: #F0F0F0;
+#location {
+	margin-right: 200px;
+}
 
+#start {
+	margin-right: 340px;
 }

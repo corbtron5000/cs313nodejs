@@ -46,7 +46,6 @@ exports.addTrips = function(app, pool) {
 				callback(err, null);
 			}
 
-			callback("The query was inserted");
 			callback(null, res)
 		});
 	}

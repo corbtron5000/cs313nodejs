@@ -24,9 +24,9 @@
 	<h1 id="plan">Your Planned Trips</h1>
 
 	<div id="parent">
-		<div id="addTrip">
-			<p>Create New Camping Trip</p>
-		</div>
+		<a href="addTrips.html" class="trips"><div id="addTrip">
+			<h2 id="create">Create New Camping Trip</h2>
+		</div></a>
 	</div>
 
 	<script>
@@ -47,12 +47,14 @@
 					dataType: "json",
 				}).done (function(data) {
 
+					var start = data[0]['startdate'].substr(0, 10);
+					var end = data[0]['enddate'].substr(0, 10);
 					//alert(data[0]['location']);
-					var id = "<div id='trip'" + data[0]['id'] + ">";
-					var location = "<p>" + data[0]['location'] + "</p>";
-					var startDate = "<p>" + data[0]['startdate'] + "<p>";
-					var endDate = "<p>" + data[0]['enddate'] + "<p></div>";
-					$("#addTrip").append(id + location + startDate + endDate);
+					var id = "<a href=modifyTrips.html?id=" + data[0]['id'] + " class=trips><div id='trip'>";
+					var location = "<h2 id=head>" + data[0]['location'] + "</h2>";
+					var startDate = "<p> Start Date: " + start + "<p>";
+					var endDate = "<p> End Date: " + end + "<p></div></a>";
+					$("#parent").append(id + location + startDate + endDate);
 
 				}).fail (function () {
 					alert("Sorry not working");

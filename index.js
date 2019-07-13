@@ -51,7 +51,7 @@ app.get("/result", function (req, res) {
 });
 
 app.listen(PORT, function() {
-	console.log("The server is listening on port" + PORT);
+	console.log("The server is listening on port: " + PORT);
 });
 
 
@@ -61,7 +61,11 @@ trips.trip(app, pool);
 const newTrips = require(__dirname + '/addTrips');
 newTrips.addTrips(app, pool);
 
+const loadSelectedTrip = require(__dirname + '/loadTrip');
+loadSelectedTrip.loadTrip(app, pool);
 
+const updateTrip = require(__dirname + '/updateTrip');
+updateTrip.updateTrips(app, pool);
 
 function calculateMailTotalPrice(type, mailWeight) {
 
