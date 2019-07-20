@@ -21,6 +21,7 @@
 	<div id="form">
 		<form>
 			<h1 id="formTitle">New Camping Trip</h1>
+			<div id="weather"><div class="temps"></div></div>
 			<div id="formData">
 				<div id="divLoc">
 					<div class="loc">
@@ -28,8 +29,8 @@
 						<input type="text" name="location" id="location" placeholder="Enter a location" size="40" maxlength="40"><br><br>
 					</div>
 					<div class="loc">
-						<span>City </span><br>
-						<input type="text" name="City" id="city" placeholder="City for weather" size="40"><br><br>
+						<span>City Zip</span><br>
+						<input type="text" name="City" id="city" placeholder="City zip for weather" size="40"><br><br>
 					</div>
 				</div>
 				<div id="dates">
@@ -57,19 +58,71 @@
 	</div>
 
 	<script>
+			$('#city').change(function(e) {
+				e.preventDefault();
+
+				//alert("weather is being called");
+
+				var city = $('#city').val();
+				var id = "a238bfdad4448896e5893a7651724c4d"
+				var $url = "http://api.openweathermap.org/data/2.5/forecast?zip=" + city + "&units=imperial" + "&APPID=" + id;
+
+				alert($url);
+
+				$.ajax({
+					type: 'GET',
+					url: $url,
+					dataType: "json",
+				}).done (function(data) {
+
+					$('#weather').append("<h3> The Next 5 Days of Weather</h3>");
+
+					for (var i = 0; i < 40; i += 8) {
+
+						var icon = "<div class=temps id=temps><span>" + "<img src=http://openweathermap.org/img/w/" + data.list[i].weather[0].icon + ".png></span>";
+						var max = "<p id=min>High: " + data.list[i].main.temp_max;
+						var min = " Low: " + data.list[i].main.temp_min + "</p></div>";
+						var weathers = icon + max + min ;
+						//alert(weathers);
+						
+						$('#weather').append(weathers);
+					}
+				}).fail (function () {
+					alert("Sorry not working");
+				})
+
+			})
+</script>
+<script>
 			$('#create').click(function (e) {
 				e.preventDefault();
 				//alert("Is this being called")
-				submitHandler();
 
-				$('#location').val("");
-				$('#start').val("");
-				$('#end').val("");
-				$('#prepare').val("");
-				$('#packing').val("")
-				$("#itinerary").val("");
-				$('#goals').val("");
-				$('#campers').val("");
+				var loc = $('#location').val();
+				var start = $("#start").val();
+				var end = $('#end').val();
+				var prepare = $('#prepare').val();
+				var packing = $('#packing').val()
+				var itinerary = $("#itinerary").val();
+				var goal = $('#goals').val();
+				var campers = $('#campers').val();
+				if ( loc.length > 0 || start.length > 0 || end.length > 0 || prepare.length > 0 || packing.length > 0 || 
+					itinerary.length > 0 || goal.length > 0 || campers > 0) {
+
+					//alert("Getting in the if statement: " + loc);
+					submitHandler();
+
+					$('#location').val("");
+					$('#start').val("");
+					$('#end').val("");
+					$('#prepare').val("");
+					$('#packing').val("")
+					$("#itinerary").val("");
+					$('#goals').val("");
+					$('#campers').val("");
+			} else {
+				alert("Can't leave required field(s) empty");
+			}
 
 			})
 

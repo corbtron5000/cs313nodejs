@@ -47,14 +47,16 @@
 					dataType: "json",
 				}).done (function(data) {
 
-					var start = data[0]['startdate'].substr(0, 10);
-					var end = data[0]['enddate'].substr(0, 10);
-					//alert(data[0]['location']);
-					var id = "<a href=modifyTrips.html?id=" + data[0]['id'] + " class=trips><div id='trip'>";
-					var location = "<h2 id=head>" + data[0]['location'] + "</h2>";
-					var startDate = "<p> Start Date: " + start + "<p>";
-					var endDate = "<p> End Date: " + end + "<p></div></a>";
-					$("#parent").append(id + location + startDate + endDate);
+					for (var i = 0; i < data.length; i++) {
+						var start = data[i]['startdate'].substr(0, 10);
+						var end = data[i]['enddate'].substr(0, 10);
+						//alert(data[0]['location']);
+						var id = "<a href=modifyTrips.html?id=" + data[i]['id'] + " class=trips><div id='trip'>";
+						var location = "<h2 id=head>" + data[i]['location'] + "</h2>";
+						var startDate = "<p> Start Date: " + start + "<p>";
+						var endDate = "<p> End Date: " + end + "<p></div></a>";
+						$("#parent").append(id + location + startDate + endDate);
+				}
 
 				}).fail (function () {
 					alert("Sorry not working");

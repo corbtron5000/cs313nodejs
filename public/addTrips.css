@@ -75,3 +75,14 @@ body {
 #start {
 	margin-right: 340px;
 }
+
+.temps {
+	display: inline-block;	
+}
+#weather {
+	text-align: center;
+}
+
+#temps {
+	padding: 10px;
+}
