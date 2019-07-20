@@ -29,8 +29,8 @@
 						<input type="text" name="location" id="location" placeholder="Enter a location" size="40" maxlength="40"><br><br>
 					</div>
 					<div class="loc">
-						<span>City </span><br>
-						<input type="text" name="City" id="city" placeholder="City for weather" size="40"><br><br>
+						<span>City Zip</span><br>
+						<input type="text" name="City" id="city" placeholder="City zip for weather" size="40"><br><br>
 					</div>
 				</div>
 				<div id="dates">
@@ -64,7 +64,7 @@
 
 				var city = $('#city').val();
 				var id = "a238bfdad4448896e5893a7651724c4d"
-				var $url = "http://api.openweathermap.org/data/2.5/forecast?zip=" + city + "&units=imperial" + "&APPID=" + id;
+				var $url = "https://cors-anywhere.herokuapp.com/http://api.openweathermap.org/data/2.5/forecast?zip=" + city + "&units=imperial" + "&APPID=" + id;
 
 				alert($url);
 
